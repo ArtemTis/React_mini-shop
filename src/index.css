@@ -67,6 +67,12 @@ header .shop-cart {
   padding-bottom: 0;
 }
 
+.shop-cart__wrap{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
 header .shop-cart .empty h2 {
   font-size: 20px;
   margin-bottom: 20px;

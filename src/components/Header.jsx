@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import Order from './Order';
 
@@ -22,18 +22,26 @@ const showNothing = () => {
   </div>)
 }
 
-// const closeCart = (e, ref) => {
-//   let isOpen = e.target.closest('.shop-cart');
-//   if (!isOpen) {
-//     // set(false);
-//     console.log(ref.current.className);
-//   }
-// }
+
 //onClick={e => closeCart(e, close)}
+
+
 
 const Header = ({ orders, onDelete }) => {
 
   const [cartOpen, setCartOpen] = useState(false);
+  const cartRef = useRef()
+
+  const closeCart = (e) => {
+    let isOpen = e.target.closest('.shop-cart__wrap');
+    console.log(e.target);
+    console.log(isOpen);
+    if (!isOpen) {
+      // set(false);
+      //console.log(ref.current.className);
+      //cartRef.current.addEventListener('click', (e) => {
+    }
+  }
 
   return (
     <header>
@@ -45,12 +53,14 @@ const Header = ({ orders, onDelete }) => {
           <li>Кабинет</li>
         </ul>
         <FaShoppingCart onClick={() => setCartOpen(!cartOpen)} className={`shop-cart-button ${cartOpen && 'active'}`} />
-        
+
         {cartOpen &&
-          <div className='shop-cart'>
-            {orders.length > 0
-              ? showOrders(orders, onDelete)
-              : showNothing()}
+          <div className='shop-cart__wrap' ref={cartRef} onClick={e => closeCart(e)}>
+            <div className='shop-cart'>
+              {orders.length > 0
+                ? showOrders(orders, onDelete)
+                : showNothing()}
+            </div>
           </div>
         }
       </div>
