@@ -23,23 +23,16 @@ const showNothing = () => {
 }
 
 
-//onClick={e => closeCart(e, close)}
-
-
-
 const Header = ({ orders, onDelete }) => {
 
   const [cartOpen, setCartOpen] = useState(false);
   const cartRef = useRef()
 
   const closeCart = (e) => {
-    let isOpen = e.target.closest('.shop-cart__wrap');
-    console.log(e.target);
-    console.log(isOpen);
+    let isOpen = e.target.closest('.shop-cart');
+
     if (!isOpen) {
-      // set(false);
-      //console.log(ref.current.className);
-      //cartRef.current.addEventListener('click', (e) => {
+      setCartOpen(false);
     }
   }
 
